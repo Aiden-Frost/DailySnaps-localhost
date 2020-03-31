@@ -1,0 +1,210 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.3s;
+      width: 40%;
+      padding: 2px 16px;
+      margin-bottom: 30px;
+      margin-top: 30px;
+      margin-right:40px;
+      margin-left:40px;
+    }
+    
+    .card:hover {
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+    
+    .container {
+      padding: 2px 16px;
+    }
+    a {
+    color: black !important;
+    text-decoration: none !important;
+    }
+
+    .autocomplete {
+     position: relative;
+     display: inline-block;
+    }
+
+    .autocomplete-items {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+    top: 100%;
+    left: 0;
+    right: 0;
+    }
+
+    .autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff; 
+    border-bottom: 1px solid #d4d4d4; 
+    }
+
+    .autocomplete-items div:hover {
+    background-color: #e9e9e9; 
+    }
+
+    .autocomplete-active {
+    background-color: DodgerBlue !important; 
+    color: #ffffff; 
+}
+    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <title>Filter Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  </head>
+  <body>
+
+
+    <main role="main" class="container">
+
+      <h3>Filter News</h3>
+      <form method="GET" autocomplete="off" action=".">
+        <div class="form-row">
+            <div class="form-group col-12">
+                <div class="input-group">
+                    <input class="form-control py-2 border-right-0 border" type="search" name="title_or_category" placeholder="Title or Category" />
+                    <span class="input-group-append">
+                        <div class="input-group-text bg-transparent">
+                            <i class="fa fa-search"></i>
+                        </div>
+                    </span>
+                </div>
+            </div>        
+        </div>
+        <div class="form-row">
+            <div class="form-group col-12">
+                <div class="input-group">
+                    <input class="form-control py-2 border-right-0 border" type="search" name="source" id="myInput"  placeholder="Source or Country" />
+                    <span class="input-group-append">
+                        <div class="input-group-text bg-transparent">
+                            <i class="fa fa-search"></i>
+                        </div>
+                    </span>
+                </div>
+            </div>        
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+
+      <hr />
+      <div class="row">
+        {% for pos in totalResults %}
+            
+            <a href={{ url|index_value:pos }}>
+            <div class="card col-5">
+                <img src= {{ image|index_value:pos }} alt="Avatar" style="width:100%">
+                <hr color="black"/>
+                <div class="container">
+                    <p>Source : {{ source|index_value:pos }}</p> 
+                    <p>Author : {{ author|index_value:pos }}</p> 
+                    <p>Description : {{ description|index_value:pos }} </p>
+                </div>
+                <hr color="black"/>
+                <div class="container">
+                    <h4><b>{{ title|index_value:pos }}</b></h4> 
+                    <p>{{ content|index_value:pos }}</p> 
+                </div>
+                <hr color="black"/>
+                <div class="container">
+                    <p>Date : {{ published|index_value:pos }}</p>
+                </div>
+        </a>
+
+            </div>
+        {% endfor %}
+      
+      ------------------------------------------------------------------------------------------------------
+    </main>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+<script>
+    function autocomplete(inp, arr) {
+      var currentFocus;
+      inp.addEventListener("input", function(e) {
+          var a, b, i, val = this.value;
+          closeAllLists();
+          if (!val) { return false;}
+          currentFocus = -1;
+          a = document.createElement("DIV");
+          a.setAttribute("id", this.id + "autocomplete-list");
+          a.setAttribute("class", "autocomplete-items");
+          this.parentNode.appendChild(a);
+          for (i = 0; i < arr.length; i++) {
+            if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+              b = document.createElement("DIV");
+              b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+              b.innerHTML += arr[i].substr(val.length);
+              b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+              b.addEventListener("click", function(e) {
+                  inp.value = this.getElementsByTagName("input")[0].value;
+                  closeAllLists();
+              });
+              a.appendChild(b);
+            }
+          }
+      });
+      inp.addEventListener("keydown", function(e) {
+          var x = document.getElementById(this.id + "autocomplete-list");
+          if (x) x = x.getElementsByTagName("div");
+          if (e.keyCode == 40) {
+            currentFocus++;
+            addActive(x);
+          } else if (e.keyCode == 38) {
+            currentFocus--;
+            addActive(x);
+          } else if (e.keyCode == 13) {
+            e.preventDefault();
+            if (currentFocus > -1) {
+              if (x) x[currentFocus].click();
+            }
+          }
+      });
+      function addActive(x) {
+        if (!x) return false;
+        removeActive(x);
+        if (currentFocus >= x.length) currentFocus = 0;
+        if (currentFocus < 0) currentFocus = (x.length - 1);
+        x[currentFocus].classList.add("autocomplete-active");
+      }
+      function removeActive(x) {
+        for (var i = 0; i < x.length; i++) {
+          x[i].classList.remove("autocomplete-active");
+        }
+      }
+      function closeAllLists(elmnt) {
+        var x = document.getElementsByClassName("autocomplete-items");
+        for (var i = 0; i < x.length; i++) {
+          if (elmnt != x[i] && elmnt != inp) {
+            x[i].parentNode.removeChild(x[i]);
+          }
+        }
+      }
+      document.addEventListener("click", function (e) {
+          closeAllLists(e.target);
+      });
+    }
+    
+    var countries = ['Infobae', 'Financial Post', 'New Scientist', 'CBS News', 'Les Echos', 'NRK', 'The Washington Times', 'The Irish Times', 'Hacker News', 'Google News (Italy)', 'The Lad Bible', 'Focus', 'Göteborgs-Posten', 'RT', 'News24', 'RTL Nieuws', 'Breitbart News', 'The Verge', 'Axios', 'The Wall Street Journal', 'Google News (Argentina)', "L'equipe", 'Google News', 'Vice News', 'Newsweek', 'Reddit /r/all', 'Wirtschafts Woche', 'Fox Sports', 'ANSA.it', 'Ars Technica', 'Business Insider', 'CNN Spanish', 'Bild', 'News.com.au', 'Wired.de', 'Argaam', 'National Review', 'MSNBC', 'The Sport Bible', 'Google News (Russia)', 'CNN', 'Ynet', 'CBC News', 'Google News (Israel)', 'Bleacher Report', 'Google News (Brasil)', 'RBC', 'Politico', 'Fox News', 'CNBC', 'The Globe And Mail', 'Crypto Coins News', 'Il Sole 24 Ore', 'Marca', 'Independent', 'Medical News Today', 'Time', 'Ary News', 'La Repubblica', 'Handelsblatt', 'The Next Web', 'Le Monde', 'Google News (Saudi Arabia)', 'FourFourTwo', 'Google News (Australia)', 'ABC News (AU)', 'National Geographic', 'Polygon', 'ESPN', 'ABC News', 'The Hill', 'BBC Sport', 'La Nacion', 'Fortune', 'NHL News', 'BBC News', 'Google News (UK)', 'The Washington Post', 'Recode', 'The Huffington Post', 'Globo', 'Xinhua Net', 'The American Conservative', 'TechCrunch (CN)', 'The Jerusalem Post', 'Mashable', 'La Gaceta', 'TalkSport', 'IGN', 'Engadget', 'MTV News (UK)', 'InfoMoney', 'The Times of India', 'Blasting News (BR)', 'Entertainment Weekly', 'ESPN Cric Info', 'Spiegel Online', 'Google News (India)', 'Buzzfeed', 'RTE', 'SABQ', 'NFL News', 'TechCrunch', 'Associated Press', 'NBC News', 'Business Insider (UK)', 'Der Tagesspiegel', 'Aftenposten', 'Australian Financial Review', 'Gruenderszene', 'Lenta', 'Al Jazeera English', 'The Hindu', 'Reuters', 'Next Big Future', 'El Mundo', 'Wired', 'TechRadar', 'USA Today', 'Football Italia', 'Die Zeit', 'Google News (Canada)', 'Svenska Dagbladet', 'Bloomberg', 'MTV News', 'New York Magazine', 'T3n', 'Libération', 'Google News (France)', 'Russia-ru', 'South Africa-za', 'Pakistan-pk', 'Netherlands-nl', 'United States of America-us', 'France-fr', 'India-in', 'Italy-it', 'Spain-es', 'Sweden-se', 'Australia-au', 'China-zh', 'Norway-no', 'Argentina-ar', 'Germany-de', 'Canada-ca', 'Saudi Arabia-sa', 'Iceland-is', 'United Kingdom-gb', 'Brazil-br', 'Ireland-ie']
+    
+    autocomplete(document.getElementById("myInput"), countries);
+    </script>
+</html>

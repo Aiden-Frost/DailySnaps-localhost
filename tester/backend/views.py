@@ -50,7 +50,7 @@ def filter_news(request):
         context['content'].append(i['content'])
         context['totalResults'].append(pos)
         pos+=1
-    return render(request, "news/filter_news.html", context)
+    return render(request, "backend/filter_news.html", context)
 
 @register.filter
 def index_value(List,pos):
