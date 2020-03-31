@@ -8,6 +8,8 @@ This is a **Django-based website** that displays top news and using **GoogleNews
 2. Categorical search of news
 3. Top news
 4. News viewing of various websites
+5. Filter by keyword
+6. Save user's loved articles
 
 ## Getting Started
 Follow these instructions to get a copy running on your local machine for
