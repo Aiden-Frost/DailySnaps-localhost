@@ -1,11 +1,11 @@
-
-<!doctype html>
+{% load static %}
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
     .card {
-      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      box-shadow: 0 16px 32px 0 rgba(12, 0, 0, 0.2);
       transition: 0.3s;
       width: 40%;
       padding: 2px 16px;
@@ -16,7 +16,7 @@
     }
     
     .card:hover {
-      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+      box-shadow: 0 32px 64px 0 rgba(12,0,0,0.2);
     }
     
     .container {
@@ -64,7 +64,7 @@
     <meta name="description" content="">
     <title>Filter Form</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <link href='https://fonts.googleapis.com/css?family=Rouge Script' rel='stylesheet'>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   </head>
   <body>
@@ -72,7 +72,11 @@
 
     <main role="main" class="container">
 
-      <h3>Filter News</h3>
+      <div class="row-12 text-center">
+          <a class="news-header-logo text-dark" href="{%url 'home_page' %}"><img src="{% static 'news/images/lightlogo.png' %}" style= "height:2%; width:5%;"></a>
+          <br>
+          <h4 style="font-family: Rouge Script;font-size: 50px; "><b>Filter News</b></h4>
+      </div>
       <form method="GET" autocomplete="off" action=".">
         <div class="form-row">
             <div class="form-group col-12">
@@ -128,7 +132,7 @@
             </div>
         {% endfor %}
       
-      ------------------------------------------------------------------------------------------------------
+      ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     </main>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -203,8 +207,8 @@
       });
     }
     
-    var countries = ['Infobae', 'Financial Post', 'New Scientist', 'CBS News', 'Les Echos', 'NRK', 'The Washington Times', 'The Irish Times', 'Hacker News', 'Google News (Italy)', 'The Lad Bible', 'Focus', 'Göteborgs-Posten', 'RT', 'News24', 'RTL Nieuws', 'Breitbart News', 'The Verge', 'Axios', 'The Wall Street Journal', 'Google News (Argentina)', "L'equipe", 'Google News', 'Vice News', 'Newsweek', 'Reddit /r/all', 'Wirtschafts Woche', 'Fox Sports', 'ANSA.it', 'Ars Technica', 'Business Insider', 'CNN Spanish', 'Bild', 'News.com.au', 'Wired.de', 'Argaam', 'National Review', 'MSNBC', 'The Sport Bible', 'Google News (Russia)', 'CNN', 'Ynet', 'CBC News', 'Google News (Israel)', 'Bleacher Report', 'Google News (Brasil)', 'RBC', 'Politico', 'Fox News', 'CNBC', 'The Globe And Mail', 'Crypto Coins News', 'Il Sole 24 Ore', 'Marca', 'Independent', 'Medical News Today', 'Time', 'Ary News', 'La Repubblica', 'Handelsblatt', 'The Next Web', 'Le Monde', 'Google News (Saudi Arabia)', 'FourFourTwo', 'Google News (Australia)', 'ABC News (AU)', 'National Geographic', 'Polygon', 'ESPN', 'ABC News', 'The Hill', 'BBC Sport', 'La Nacion', 'Fortune', 'NHL News', 'BBC News', 'Google News (UK)', 'The Washington Post', 'Recode', 'The Huffington Post', 'Globo', 'Xinhua Net', 'The American Conservative', 'TechCrunch (CN)', 'The Jerusalem Post', 'Mashable', 'La Gaceta', 'TalkSport', 'IGN', 'Engadget', 'MTV News (UK)', 'InfoMoney', 'The Times of India', 'Blasting News (BR)', 'Entertainment Weekly', 'ESPN Cric Info', 'Spiegel Online', 'Google News (India)', 'Buzzfeed', 'RTE', 'SABQ', 'NFL News', 'TechCrunch', 'Associated Press', 'NBC News', 'Business Insider (UK)', 'Der Tagesspiegel', 'Aftenposten', 'Australian Financial Review', 'Gruenderszene', 'Lenta', 'Al Jazeera English', 'The Hindu', 'Reuters', 'Next Big Future', 'El Mundo', 'Wired', 'TechRadar', 'USA Today', 'Football Italia', 'Die Zeit', 'Google News (Canada)', 'Svenska Dagbladet', 'Bloomberg', 'MTV News', 'New York Magazine', 'T3n', 'Libération', 'Google News (France)', 'Russia-ru', 'South Africa-za', 'Pakistan-pk', 'Netherlands-nl', 'United States of America-us', 'France-fr', 'India-in', 'Italy-it', 'Spain-es', 'Sweden-se', 'Australia-au', 'China-zh', 'Norway-no', 'Argentina-ar', 'Germany-de', 'Canada-ca', 'Saudi Arabia-sa', 'Iceland-is', 'United Kingdom-gb', 'Brazil-br', 'Ireland-ie']
+    var countries_or_source = ['Infobae', 'Financial Post', 'New Scientist', 'CBS News', 'Les Echos', 'NRK', 'The Washington Times', 'The Irish Times', 'Hacker News', 'Google News (Italy)', 'The Lad Bible', 'Focus', 'Göteborgs-Posten', 'RT', 'News24', 'RTL Nieuws', 'Breitbart News', 'The Verge', 'Axios', 'The Wall Street Journal', 'Google News (Argentina)', "L'equipe", 'Google News', 'Vice News', 'Newsweek', 'Reddit /r/all', 'Wirtschafts Woche', 'Fox Sports', 'ANSA.it', 'Ars Technica', 'Business Insider', 'CNN Spanish', 'Bild', 'News.com.au', 'Wired.de', 'Argaam', 'National Review', 'MSNBC', 'The Sport Bible', 'Google News (Russia)', 'CNN', 'Ynet', 'CBC News', 'Google News (Israel)', 'Bleacher Report', 'Google News (Brasil)', 'RBC', 'Politico', 'Fox News', 'CNBC', 'The Globe And Mail', 'Crypto Coins News', 'Il Sole 24 Ore', 'Marca', 'Independent', 'Medical News Today', 'Time', 'Ary News', 'La Repubblica', 'Handelsblatt', 'The Next Web', 'Le Monde', 'Google News (Saudi Arabia)', 'FourFourTwo', 'Google News (Australia)', 'ABC News (AU)', 'National Geographic', 'Polygon', 'ESPN', 'ABC News', 'The Hill', 'BBC Sport', 'La Nacion', 'Fortune', 'NHL News', 'BBC News', 'Google News (UK)', 'The Washington Post', 'Recode', 'The Huffington Post', 'Globo', 'Xinhua Net', 'The American Conservative', 'TechCrunch (CN)', 'The Jerusalem Post', 'Mashable', 'La Gaceta', 'TalkSport', 'IGN', 'Engadget', 'MTV News (UK)', 'InfoMoney', 'The Times of India', 'Blasting News (BR)', 'Entertainment Weekly', 'ESPN Cric Info', 'Spiegel Online', 'Google News (India)', 'Buzzfeed', 'RTE', 'SABQ', 'NFL News', 'TechCrunch', 'Associated Press', 'NBC News', 'Business Insider (UK)', 'Der Tagesspiegel', 'Aftenposten', 'Australian Financial Review', 'Gruenderszene', 'Lenta', 'Al Jazeera English', 'The Hindu', 'Reuters', 'Next Big Future', 'El Mundo', 'Wired', 'TechRadar', 'USA Today', 'Football Italia', 'Die Zeit', 'Google News (Canada)', 'Svenska Dagbladet', 'Bloomberg', 'MTV News', 'New York Magazine', 'T3n', 'Libération', 'Google News (France)', 'Russia-ru', 'South Africa-za', 'Pakistan-pk', 'Netherlands-nl', 'United States of America-us', 'France-fr', 'India-in', 'Italy-it', 'Spain-es', 'Sweden-se', 'Australia-au', 'China-zh', 'Norway-no', 'Argentina-ar', 'Germany-de', 'Canada-ca', 'Saudi Arabia-sa', 'Iceland-is', 'United Kingdom-gb', 'Brazil-br', 'Ireland-ie']
     
-    autocomplete(document.getElementById("myInput"), countries);
+    autocomplete(document.getElementById("myInput"), countries_or_source);
     </script>
 </html>
