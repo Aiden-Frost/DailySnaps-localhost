@@ -73,8 +73,10 @@
     </div>
   </div>
   </div>
-   <div class="jumbotron p-4 p-md-10 text-white rounded bg-dark"> 
-      <div class="col-md-6 px-0">
+   <div class="jumbotron p-4 p-md-10 text-white rounded bg-dark">
+       
+      <div class="col-md-15 px-0">
+         
         <!--<h1 class="display-4 font-italic">Top News (Headline types)</h1>
         <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most interesting in this post’s contents.</p>
         <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p>
@@ -84,7 +86,7 @@
           <div class="carousel-inner" style="width:fit-content;">
             {% for pos in totalResults %}
               {% if pos %}
-              <div class="carousel-item " role="listbox" style=" width:100%; height: 400px !important;">
+              <div class="carousel-item " role="listbox" style=" width:1060px; height: 400px !important;">
                 <img class="carimage" src= {{ image|index_value:pos }} alt="Avatar" style="width:100%" onerror="this.onerror=null;this.src='https://media.istockphoto.com/photos/news-background-wallpaper-breaking-news-tag-in-the-center-of-banner-picture-id881903844?k=6&m=881903844&s=612x612&w=0&h=HbxI2Uh_utZifCK7KqIBGWG3eby12RLBaFI48K1K-gU=';">
                   <div class="carousel-caption">
                     <h1 class="display-9 font-italic" >{{ title|index_value:pos }}</h1>
@@ -92,7 +94,7 @@
                   </div>
               </div>
               {% else %}
-              <div class="carousel-item active" role="listbox" style=" width:100%; height: 400px !important;">
+              <div class="carousel-item active" role="listbox" style=" width:1060px; height: 400px !important;">
                 <img class="carimage" src= {{ image|index_value:pos }} alt="Avatar" style="width:100%" onerror="this.onerror=null;this.src='https://media.istockphoto.com/photos/news-background-wallpaper-breaking-news-tag-in-the-center-of-banner-picture-id881903844?k=6&m=881903844&s=612x612&w=0&h=HbxI2Uh_utZifCK7KqIBGWG3eby12RLBaFI48K1K-gU=';">
                   <div class="carousel-caption">
                     <h1 class="display-9 font-italic" >{{ title|index_value:pos }}</h1>
@@ -112,6 +114,7 @@
           </a>
         </div>        
       </div>
+    
       <script>
         $(document).ready(function(){
           // Activate Carousel
@@ -126,6 +129,7 @@
         });
         </script>
     </div>
+
     <!-- end of carousel  -->
     <div class="row mb-2">
       <div class="col-md-6">
