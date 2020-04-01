@@ -84,32 +84,18 @@
           <div class="carousel-inner" style="width:fit-content;">
             {% for pos in totalResults %}
               {% if pos %}
-<<<<<<< HEAD
-              <div class="carousel-item ">
-                <img src= {{ image|index_value:pos }} alt="Avatar" style="width:100%" onerror="this.onerror=null;this.src='https://media.istockphoto.com/photos/news-background-wallpaper-breaking-news-tag-in-the-center-of-banner-picture-id881903844?k=6&m=881903844&s=612x612&w=0&h=HbxI2Uh_utZifCK7KqIBGWG3eby12RLBaFI48K1K-gU=';">
-                  <div class="carousel-caption">
-                    <h1 class="display-9 font-italic">{{ title|index_value:pos }}</h1>
-=======
               <div class="carousel-item " role="listbox" style=" width:100%; height: 400px !important;">
-                <img class="carimage" src= {{ image|index_value:pos }} alt="Avatar">
+                <img class="carimage" src= {{ image|index_value:pos }} alt="Avatar" style="width:100%" onerror="this.onerror=null;this.src='https://media.istockphoto.com/photos/news-background-wallpaper-breaking-news-tag-in-the-center-of-banner-picture-id881903844?k=6&m=881903844&s=612x612&w=0&h=HbxI2Uh_utZifCK7KqIBGWG3eby12RLBaFI48K1K-gU=';">
                   <div class="carousel-caption">
                     <h1 class="display-9 font-italic" >{{ title|index_value:pos }}</h1>
->>>>>>> 041e96a1f83281f6847116248acfbec7ed605f4d
                     <p class="lead mb-0"><a href="{{ url|index_value:pos }}" class="text-white font-weight-bold">Continue reading...</a></p>
                   </div>
               </div>
               {% else %}
-<<<<<<< HEAD
-              <div class="carousel-item active">
-                <img src= {{ image|index_value:pos }} alt="Avatar" style="width:100%" onerror="this.onerror=null;this.src='https://media.istockphoto.com/photos/news-background-wallpaper-breaking-news-tag-in-the-center-of-banner-picture-id881903844?k=6&m=881903844&s=612x612&w=0&h=HbxI2Uh_utZifCK7KqIBGWG3eby12RLBaFI48K1K-gU=';">
-                  <div class="carousel-caption">
-                    <h1 class="display-9 font-italic">{{ title|index_value:pos }}</h1>
-=======
               <div class="carousel-item active" role="listbox" style=" width:100%; height: 400px !important;">
-                <img class="carimage" src= {{ image|index_value:pos }} alt="Avatar">
+                <img class="carimage" src= {{ image|index_value:pos }} alt="Avatar" style="width:100%" onerror="this.onerror=null;this.src='https://media.istockphoto.com/photos/news-background-wallpaper-breaking-news-tag-in-the-center-of-banner-picture-id881903844?k=6&m=881903844&s=612x612&w=0&h=HbxI2Uh_utZifCK7KqIBGWG3eby12RLBaFI48K1K-gU=';">
                   <div class="carousel-caption">
                     <h1 class="display-9 font-italic" >{{ title|index_value:pos }}</h1>
->>>>>>> 041e96a1f83281f6847116248acfbec7ed605f4d
                     <p class="lead mb-0"><a href="{{ url|index_value:pos }}" class="text-white font-weight-bold">Continue reading...</a></p>
                   </div>
               </div>
@@ -117,7 +103,6 @@
             {% endfor %}
               
           </div>
-          
           <!-- Left and right controls -->
           <a class="carousel-control-prev" href="#myCarousel">
             <span class="carousel-control-prev-icon"></span>

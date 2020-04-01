@@ -18,7 +18,6 @@ def home_page(request):
         context['image'].append(i['urlToImage'])
         context['totalResults'].append(pos)
         pos+=1
-    print(context)
     return render(request, "news/index.html", context)
 
 def is_valid_queryparam(param):
