@@ -109,8 +109,4 @@ in your browser to view a local copy of DailySnaps
 
 ### Signup Usage
 
-Once you fill in the details and click Signup button,
-Look inside your terminal/console
-There will be a link
-Copy paste that onto your broswer's address bar and press enter
-You will automatically be redirected to the website with you logged in.
+Once you fill in the details and click Signup button, look inside your terminal/console. There will be a uniquely generated link. Copy paste that onto your broswer's address bar and press enter. You will automatically be redirected to the website with you logged in.
