@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'news.apps.NewsConfig',
+    'six',
 ]
 
 MIDDLEWARE = [
@@ -125,3 +126,5 @@ MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 LOGOUT_REDIRECT_URL=''
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
