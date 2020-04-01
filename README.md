@@ -10,6 +10,7 @@ This is a **Django-based website** that displays top news and using **GoogleNews
 4. News viewing of various websites
 5. Filter by keyword
 6. Save user's loved articles.
+7. Tokenized Signup with confirmation in console(on local machine) or email.
 
 ## Getting Started
 Follow these instructions to get a copy running on your local machine for
@@ -41,15 +42,16 @@ conda create --name djangoenv
 conda activate djangoenv
 ```
 
-5. Install Django using pip (pip is inbuilt in python when Anaconda is installed)
+5. Install Django using pip (pip is inbuilt in python when Anaconda is installed) (Django 3.0 and above )
 ```
 pip install django
 ```
 
-6. Install GoogleNews and NewsApi
+6. Install GoogleNews, NewsApi and six
 ```
 pip install GoogleNews
 pip install newsapi-python
+pip install six
 ```
 
 7. Generate a secret key for your django app using
@@ -104,3 +106,11 @@ python manage.py runserver
 
 13. If there were no errors anywhere, you can now go to http://localhost:8000/
 in your browser to view a local copy of DailySnaps
+
+### Signup Usage
+
+Once you fill in the details and click Signup button,
+Look inside your terminal/console
+There will be a link
+Copy paste that onto your broswer's address bar and press enter
+You will automatically be redirected to the website with you logged in.
