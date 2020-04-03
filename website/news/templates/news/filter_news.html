@@ -58,18 +58,55 @@
     background-color: DodgerBlue !important; 
     color: #ffffff; 
 }
+.button {
+  display: inline-block;
+  padding: 10px 35px;
+  font-size: 18px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  transform: translateY(4px);
+}
     </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <title>Filter Form</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href='https://fonts.googleapis.com/css?family=Rouge Script' rel='stylesheet'>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   </head>
   <body>
-
-
+    <script type="text/javascript">
+    var URL = "{% url 'filter_news' %}";
+    function save_news(){
+      var data = {'news': news};
+      $.post(URL, data, function(response){
+        
+      });
+    }
+    $(document).ready(function(){
+      $("input[name='save']").click(function(){
+        news = this.id;
+        document.getElementById(this.id).value = "Saved"
+        save_news();
+      });
+    });
+    </script>
     <main role="main" class="container">
 
       <div class="row-12 text-center">
@@ -91,20 +128,19 @@
             </div>        
         </div>
         <div class="form-row">
-            <div class="form-group col-12">
-                <div class="input-group">
-                    <input class="form-control py-2 border-right-0 border" type="search" name="source" id="myInput"  placeholder="Source or Country" />
-                    <span class="input-group-append">
-                        <div class="input-group-text bg-transparent">
-                            <i class="fa fa-search"></i>
-                        </div>
-                    </span>
-                </div>
-            </div>        
-        </div>
-        <button type="submit" class="btn btn-primary">Search</button>
-      </form>
-
+          <div class="form-group col-12">
+              <div class="input-group">
+                  <input class="form-control py-2 border-right-0 border" type="search" name="source" id="myInput"  placeholder="Source or Country" />
+                  <span class="input-group-append">
+                      <div class="input-group-text bg-transparent">
+                          <i class="fa fa-search"></i>
+                      </div>
+                  </span>
+              </div>
+          </div>        
+      </div>
+      <button type="submit" class="btn btn-primary" name = "search">Search</button>
+    </form>
       <hr />
       <div class="row">
         {% for pos in totalResults %}
@@ -128,14 +164,19 @@
                     <p>Date : {{ published|index_value:pos }}</p>
                 </div>
         </a>
+        <div class="container">
+          <form method="POST" autocomplete="off" action=".">
+            <input  type="button" value="Save" id= '{{ source|index_value:pos }}@#${{ author|index_value:pos }}@#${{description|index_value:pos }}@#${{ title|index_value:pos }}@#${{ content|index_value:pos }}@#${{ published|index_value:pos }}@#${{ image|index_value:pos }}@#${{ url|index_value:pos }}' class="button" name="save"/>
+          </form>
 
+        </div>
             </div>
         {% endfor %}
       
       ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     </main>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 

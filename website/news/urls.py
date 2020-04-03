@@ -6,6 +6,7 @@ from django.conf.urls import url
 urlpatterns = [
     path('', views.home_page, name='home_page'),
     path('filter/', views.filter_news,name='filter_news'),
+    path('saved/',views.saved_news,name='saved_news'),
     path('login/',views.LoginView.as_view(), name="login"),
     path('logout/',views.logout,name="logout"),
     path('signup/', views.signup_view, name="signup"),

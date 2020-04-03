@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.conf import settings
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -12,6 +14,18 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+class Saved_Articles(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    source = models.CharField(max_length=5000, blank=True)
+    author = models.CharField(max_length=5000, blank=True)
+    title = models.CharField(max_length=5000, blank=True)
+    description = models.CharField(max_length=5000, blank=True)
+    url = models.CharField(max_length=5000, blank=True)
+    image = models.CharField(max_length=5000, blank=True)
+    published = models.CharField(max_length=5000, blank=True)
+    content = models.CharField(max_length=5000, blank=True)
+    totalResults = models.CharField(max_length=5000, blank=True)
 
 @receiver(post_save, sender=User)
 def update_profile_signal(sender, instance, created, **kwargs):
