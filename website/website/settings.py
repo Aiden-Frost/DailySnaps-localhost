@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'news.apps.NewsConfig',
     'six',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

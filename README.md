@@ -52,6 +52,7 @@ pip install django
 pip install GoogleNews
 pip install newsapi-python
 pip install six
+pip install django-widget-tweaks
 ```
 
 7. Generate a secret key for your django app using

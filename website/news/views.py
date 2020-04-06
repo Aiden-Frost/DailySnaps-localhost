@@ -189,6 +189,46 @@ def saved_news(request):
     display['totalResults'] = [i for i in range(len(display['source'])-1)]
     return render(request, "news/saved_news.html", display)
 
+import random
+@csrf_exempt
+def preferences(request):
+    user_data = Saved_Articles.objects.get(user = request.user)
+    if request.method=="POST":
+        pref = request.POST['pref']
+        user_data.preference += pref
+        user_data.save()
+    pref = user_data.preference
+    if pref=='':
+        return render(request, "news/preferences.html", {})
+    category = pref.split('+')[:len(pref.split('+'))-1]
+    total =[i for i in range(len(pref.split('+'))-1)]
+    context1 = {'source':[],'author':[],'title':[],'description':[],'url':[],'image':[],'published':[],'content':[],'total':total,'category':category,'specific':[],'totalResults':[]}
+    pref_data = {}
+    for i in range(len(total)):
+        if i!=0:
+            pref_data['articles']+=(newsapi.get_top_headlines(country='in',category=category[i],page_size=20,language='en')['articles'])
+        else:
+            pref_data['articles'] = newsapi.get_top_headlines(country='in',category=category[i],page_size=20,language='en')['articles']
+        for j in pref_data['articles'][20*i:]:
+            j['specific'] = category[i]
+    pos = 0 
+    for i in pref_data['articles']:
+            context1['source'].append(i['source']['name'])
+            context1['author'].append(i['author'])
+            context1['title'].append(i['title'])
+            context1['description'].append(i['description'])
+            context1['url'].append(i['url'])
+            context1['image'].append(i['urlToImage'])
+            context1['published'].append(i['publishedAt'])
+            context1['content'].append(i['content'])
+            context1['specific'].append(i['specific'])
+            context1['totalResults'].append(pos)
+            pos+=1
+    mix = list(zip(context1['source'],context1['author'],context1['title'],context1['description'],context1['url'],context1['image'],context1['published'],context1['content'],context1['specific']))
+    random.shuffle(mix)
+    context1['source'],context1['author'],context1['title'],context1['description'],context1['url'],context1['image'],context1['published'],context1['content'],context1['specific'] = zip(*mix)
+    return render(request, "news/preferences.html", context1)
+
 @register.filter
 def index_value(List,pos):
     return List[pos]

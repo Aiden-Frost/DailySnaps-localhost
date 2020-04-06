@@ -26,6 +26,7 @@ class Saved_Articles(models.Model):
     published = models.CharField(max_length=5000, blank=True)
     content = models.CharField(max_length=5000, blank=True)
     totalResults = models.CharField(max_length=5000, blank=True)
+    preference = models.CharField(max_length=5000,blank=True)
 
 @receiver(post_save, sender=User)
 def update_profile_signal(sender, instance, created, **kwargs):

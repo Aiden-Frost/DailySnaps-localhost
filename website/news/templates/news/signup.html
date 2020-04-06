@@ -1,16 +1,48 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <title> Sign Up </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Rouge Script' rel='stylesheet'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <style>
+    .input{
+      border-radius: 5px;
+      border: 2px solid rgb(8, 8, 8);
+    }
+  
+    .error{
+        font-size: medium;
+        color: red;
+    }
+  </style>
   </head>
   <body>
-    <h2>Sign up Form</h2>
+    <div class="row-12 text-center">
+      <a class="news-header-logo text-dark" href="{%url 'home_page' %}"><img src="{% static 'news/images/lightlogo.png' %}" style= "height:1%; width:5%;"></a>
+      <br>
+      <h4 style="font-family: Rouge Script;font-size: 50px; "><b>Sign Up</b></h4>
+  </div>
+  <br>
+    <div style="text-align: center;">
+      <h2 class="pb-10 mb-15 font-italic">Already have an account?</h2>
+      <a class="btn btn-sm btn-outline-secondary mr-3" href="{% url 'login' %}">&nbsp&nbspLogin&nbsp&nbsp</a>
+    </div>
+    <br>
+    <div class="container">
+      <h3 class="pb-4 mb-4 font-italic border-bottom">
+        Content awaits you!!!!
+      </h3>
     <form method="post">
+      {% load widget_tweaks %}
       {% csrf_token %}
       {% for field in form %}
         <p>
           {{ field.label_tag }}<br>
-          {{ field }}
+          {{ field |add_class:"input" }}
           {% if field.help_text %}
             <small style="color: grey">{{ field.help_text }}</small>
           {% endif %}
@@ -19,7 +51,10 @@
           {% endfor %}
         </p>
       {% endfor %}
-      <button type="submit">Sign up</button>
+      <button type="submit" class="btn btn-la btn-outline-secondary mr-3">Sign up</button>
     </form>
+  </div>
+  <br>
+  <p>----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
   </body>
 </html>
