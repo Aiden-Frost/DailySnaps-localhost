@@ -29,17 +29,61 @@ source_info = {'':'','ABC News': 'abc-news', 'ABC News (AU)': 'abc-news-au', 'Af
 
 
 def home_page(request):
-    data = newsapi.get_top_headlines(country='in',page_size=3)
-    context = {'source':[],'author':[],'title':[],'description':[],'url':[],'image':[],'published':[],'content':[],'totalResults':[]}
+    data = newsapi.get_top_headlines(country='in',page_size=5)
+    context = {'carousel':[],'source':[],'author':[],'title':[],'description':[],'url':[],'image':[],'published':[],'content':[],'totalResults':[]}
     pos = 0
     for i in data['articles']:
+        context['carousel'].append(1)
+        context['source'].append(i['source']['name'])
+        context['author'].append(i['author'])
         context['title'].append(i['title'])
         context['description'].append(i['description'])
         context['url'].append(i['url'])
         context['image'].append(i['urlToImage'])
+        context['published'].append(i['publishedAt'])
+        context['content'].append(i['content'])
         context['totalResults'].append(pos)
         pos+=1
-    return render(request, "news/index.html", context)
+    context_data = newsapi.get_everything(q="coronavirus",language='en',sort_by='popularity',page_size=5)
+    for i in context_data['articles']:
+        context['carousel'].append(0)
+        context['source'].append(i['source']['name'])
+        context['author'].append(i['author'])
+        context['title'].append(i['title'])
+        context['description'].append(i['description'])
+        context['url'].append(i['url'])
+        context['image'].append(i['urlToImage'])
+        context['published'].append(i['publishedAt'])
+        context['content'].append(i['content'])
+        context['totalResults'].append(pos)
+        pos+=1
+    context_entertainment = newsapi.get_everything(q="hollywood",sort_by='popularity',language='en',page_size=2)
+    for i in context_entertainment['articles']:
+        context['carousel'].append(2)
+        context['source'].append(i['source']['name'])
+        context['author'].append(i['author'])
+        context['title'].append(i['title'])
+        context['description'].append(i['description'])
+        context['url'].append(i['url'])
+        context['image'].append(i['urlToImage'])
+        context['published'].append(i['publishedAt'])
+        context['content'].append(i['content'])
+        context['totalResults'].append(pos)
+        pos+=1
+    context_entertainment = newsapi.get_everything(q="bollywood",language='en',sort_by='popularity',page_size=5)
+    for i in context_entertainment['articles']:
+        context['carousel'].append(3)
+        context['source'].append(i['source']['name'])
+        context['author'].append(i['author'])
+        context['title'].append(i['title'])
+        context['description'].append(i['description'])
+        context['url'].append(i['url'])
+        context['image'].append(i['urlToImage'])
+        context['published'].append(i['publishedAt'])
+        context['content'].append(i['content'])
+        context['totalResults'].append(pos)
+        pos+=1
+    return render(request, "news/index.html", context )
 
 class LoginView(View): #there is a default login class also in django, we made this in class to simulate that
 	def get(self,request):
@@ -237,3 +281,24 @@ def index_value(List,pos):
 @stringfilter
 def value(data):
     return data
+
+@register.filter
+def carousel_content(value):
+    if value == 1:
+        return 1
+    else:
+        return 0
+
+@register.filter
+def content(value):
+    if value == 0 or value == 3:
+        return 1
+    else:
+        return 0
+
+@register.filter
+def card_content(value):
+    if value == 2:
+        return 1
+    else:
+        return 0
