@@ -235,6 +235,7 @@ def saved_news(request):
 
 import random
 @csrf_exempt
+@login_required(login_url='/login')
 def preferences(request):
     user_data = Saved_Articles.objects.get(user = request.user)
     if request.method=="POST":
