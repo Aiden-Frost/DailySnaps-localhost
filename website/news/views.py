@@ -190,15 +190,16 @@ def filter_news(request):
         data = news.split('@#$')
         user_data = Saved_Articles.objects.get(user = request.user)
         #user_data.user = request.user
-        user_data.source += str(data[0]) + '@#$'
-        user_data.author += str(data[1]) + '@#$'
-        user_data.description += str(data[2]) + '@#$'
-        user_data.title += str(data[3]) + '@#$'
-        user_data.content += str(data[4]) + '@#$'
-        user_data.published += str(data[5]) + '@#$'
-        user_data.image += str(data[6]) + '@#$'
-        user_data.url += str(data[7]) + '@#$'
-        user_data.save()
+        if str(data[7]) not in user_data.url.split('@#$'):
+            user_data.source += str(data[0]) + '@#$'
+            user_data.author += str(data[1]) + '@#$'
+            user_data.description += str(data[2]) + '@#$'
+            user_data.title += str(data[3]) + '@#$'
+            user_data.content += str(data[4]) + '@#$'
+            user_data.published += str(data[5]) + '@#$'
+            user_data.image += str(data[6]) + '@#$'
+            user_data.url += str(data[7]) + '@#$'
+            user_data.save()
         global context
         return render(request, "news/filter_news.html", context)
     else:
