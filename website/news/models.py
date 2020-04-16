@@ -32,6 +32,7 @@ class Saved_Articles(models.Model):
 def update_profile_signal(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
+        Saved_Articles.objects.create(user=instance)
     instance.profile.save()
 
 class News(models.Model):

@@ -150,9 +150,6 @@ def activate(request, uidb64, token):
         user.profile.signup_confirmation = True
         user.save()
         login(request, user)
-        user_data = Saved_Articles()
-        user_data.user = request.user
-        user_data.save()
         return redirect('home_page')
     else:
         return render(request, 'news/activation_invalid.html')
