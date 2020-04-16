@@ -178,7 +178,7 @@ def filter(request):
 
     return data
 
-
+@login_required(login_url='/login')
 @csrf_exempt
 def filter_news(request):
     if request.method=="POST":
