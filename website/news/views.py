@@ -201,8 +201,10 @@ def filter_news(request):
             user_data.url += str(data[7]) + '@#$'
             user_data.save()
         global context
+        context['saved'] = user_data.url.split('@#$')
         return render(request, "news/filter_news.html", context)
     else:
+        user_data = Saved_Articles.objects.get(user = request.user)
         final_data = filter(request)
         context = {'source':[],'author':[],'title':[],'description':[],'url':[],'image':[],'published':[],'content':[],'totalResults':[]}
         pos = 0
@@ -217,6 +219,7 @@ def filter_news(request):
             context['content'].append(i['content'])
             context['totalResults'].append(pos)
             pos+=1
+        context['saved'] = user_data.url.split('@#$')
         return render(request, "news/filter_news.html", context)
 
 @login_required(login_url='/login')

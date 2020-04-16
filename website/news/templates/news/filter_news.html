@@ -166,7 +166,7 @@
         </a>
         <div class="container">
           <form method="POST" autocomplete="off" action=".">
-            <input  type="button" value="Save" id= '{{ source|index_value:pos }}@#${{ author|index_value:pos }}@#${{description|index_value:pos }}@#${{ title|index_value:pos }}@#${{ content|index_value:pos }}@#${{ published|index_value:pos }}@#${{ image|index_value:pos }}@#${{ url|index_value:pos }}' class="button" name="save"/>
+            <input  type="button" value="Save{% if url|index_value:pos in saved %}d {% endif %}" id= '{{ source|index_value:pos }}@#${{ author|index_value:pos }}@#${{description|index_value:pos }}@#${{ title|index_value:pos }}@#${{ content|index_value:pos }}@#${{ published|index_value:pos }}@#${{ image|index_value:pos }}@#${{ url|index_value:pos }}' class="button" name="save"/>
           </form>
 
         </div>
