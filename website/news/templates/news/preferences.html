@@ -95,7 +95,7 @@
   <div id="myModal" class="modal">
 
     <!-- Modal content -->
-    <div class="modal-content">
+    <div class="modal-content" id="prefcontainer">
       <span class="close"><button class="pb-4 mb-4 font-italic close" name="save">Confirm Changes</button>
       <h3 class="pb-4 mb-4 font-italic border-bottom">
         Choose your preferences
@@ -171,7 +171,7 @@ var btn = document.getElementById("myBtn");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
-var pref = '';
+
 // When the user clicks the button, open the modal 
 btn.onclick = function() {
   modal.style.display = "block";
@@ -190,9 +190,9 @@ window.onclick = function(event) {
 }
 function add(cell){
   cell.classList.toggle("active");
-  pref += cell.id + '+';
-  //window.alert(pref);
 }
+
+var pref = ''; //preferences string
 
 var URL = "{% url 'preferences' %}";
     function save_pref(){
@@ -203,7 +203,12 @@ var URL = "{% url 'preferences' %}";
     }
     $(document).ready(function(){
       $("button[name='save']").click(function(){
-        //window.alert(pref);
+        var activePrefs = document.getElementById("prefcontainer").getElementsByClassName("active");
+        for(let i=0;i<activePrefs.length;i++)
+        {
+          pref += activePrefs[i].getAttribute("id");
+          pref += '+';
+        }
         save_pref();
       });
     });

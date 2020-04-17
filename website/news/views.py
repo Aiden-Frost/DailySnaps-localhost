@@ -241,7 +241,7 @@ def preferences(request):
     user_data = Saved_Articles.objects.get(user = request.user)
     if request.method=="POST":
         pref = request.POST['pref']
-        user_data.preference += pref
+        user_data.preference = pref
         user_data.save()
     pref = user_data.preference
     if pref=='':
