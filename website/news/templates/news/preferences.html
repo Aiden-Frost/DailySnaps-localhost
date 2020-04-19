@@ -128,6 +128,7 @@ function resetTheme() {
         </div>
         <div class="text-right col-6">
           <a class="btn btn-sm btn-outline-secondary text-right" id="myBtn">Customize your preferences</a>
+          <a class="btn btn-sm btn-outline-secondary text-right" onclick="refresh()">Refresh Feed</a>
         </div>
       </div>
     </h3>
@@ -232,6 +233,10 @@ function add(cell){
   cell.classList.toggle("active");
 }
 
+function refresh(){
+  location.reload();
+}
+
 var pref = ''; //preferences string
 
 var URL = "{% url 'preferences' %}";
@@ -240,6 +245,7 @@ var URL = "{% url 'preferences' %}";
       $.post(URL, data, function(response){
         
       });
+      pref = '';
     }
     $(document).ready(function(){
       $("button[name='save']").click(function(){
