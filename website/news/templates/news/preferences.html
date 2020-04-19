@@ -65,6 +65,10 @@
   text-decoration: none;
   cursor: pointer;
 }
+[data-theme="dark"] {
+  background-color: #111 !important;
+  color: #eee;
+}
     </style>
     <!-- Custom styles for this template -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
@@ -72,6 +76,42 @@
     <!-- Custom styles for this template -->
   </head>
   <body>
+  <div class="nav-link">
+
+          <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="darkSwitch">
+            <label class="custom-control-label" for="darkSwitch">Dark Mode</label>
+          </div>
+          <script>
+            const darkSwitch = document.getElementById('darkSwitch');
+window.addEventListener('load', () => {
+  if (darkSwitch) {
+    initTheme();
+    darkSwitch.addEventListener('change', () => {
+      resetTheme();
+    });
+  }
+});
+
+function initTheme() {
+  const darkThemeSelected =
+    localStorage.getItem('darkSwitch') !== null &&
+    localStorage.getItem('darkSwitch') === 'dark';
+  darkSwitch.checked = darkThemeSelected;
+  darkThemeSelected ? document.body.setAttribute('data-theme', 'dark') :
+    document.body.removeAttribute('data-theme');
+}
+
+function resetTheme() {
+  if (darkSwitch.checked) {
+    document.body.setAttribute('data-theme', 'dark');
+    localStorage.setItem('darkSwitch', 'dark');
+  } else {
+    document.body.removeAttribute('data-theme');
+    localStorage.removeItem('darkSwitch');
+  }
+} 
+  </script>
     <div class="container">
   <header class="news-header py-3">
     <div class="row-12 text-center">
@@ -95,7 +135,7 @@
   <div id="myModal" class="modal">
 
     <!-- Modal content -->
-    <div class="modal-content" id="prefcontainer">
+    <div class="modal-content">
       <span class="close"><button class="pb-4 mb-4 font-italic close" name="save">Confirm Changes</button>
       <h3 class="pb-4 mb-4 font-italic border-bottom">
         Choose your preferences
@@ -171,7 +211,7 @@ var btn = document.getElementById("myBtn");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
-
+var pref = '';
 // When the user clicks the button, open the modal 
 btn.onclick = function() {
   modal.style.display = "block";
@@ -190,9 +230,9 @@ window.onclick = function(event) {
 }
 function add(cell){
   cell.classList.toggle("active");
+  pref += cell.id + '+';
+  //window.alert(pref);
 }
-
-var pref = ''; //preferences string
 
 var URL = "{% url 'preferences' %}";
     function save_pref(){
@@ -203,12 +243,7 @@ var URL = "{% url 'preferences' %}";
     }
     $(document).ready(function(){
       $("button[name='save']").click(function(){
-        var activePrefs = document.getElementById("prefcontainer").getElementsByClassName("active");
-        for(let i=0;i<activePrefs.length;i++)
-        {
-          pref += activePrefs[i].getAttribute("id");
-          pref += '+';
-        }
+        //window.alert(pref);
         save_pref();
       });
     });

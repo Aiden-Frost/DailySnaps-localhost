@@ -79,6 +79,11 @@
   background-color: #3e8e41;
   transform: translateY(4px);
 }
+
+[data-theme="dark"] {
+  background-color: #111 !important;
+  color: #eee;
+}
     </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -89,8 +94,46 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href='https://fonts.googleapis.com/css?family=Rouge Script' rel='stylesheet'>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+
   </head>
   <body>
+  <div class="nav-link">
+
+          <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="darkSwitch">
+            <label class="custom-control-label" for="darkSwitch">Dark Mode</label>
+          </div>
+          <script>
+            const darkSwitch = document.getElementById('darkSwitch');
+window.addEventListener('load', () => {
+  if (darkSwitch) {
+    initTheme();
+    darkSwitch.addEventListener('change', () => {
+      resetTheme();
+    });
+  }
+});
+
+function initTheme() {
+  const darkThemeSelected =
+    localStorage.getItem('darkSwitch') !== null &&
+    localStorage.getItem('darkSwitch') === 'dark';
+  darkSwitch.checked = darkThemeSelected;
+  darkThemeSelected ? document.body.setAttribute('data-theme', 'dark') :
+    document.body.removeAttribute('data-theme');
+}
+
+function resetTheme() {
+  if (darkSwitch.checked) {
+    document.body.setAttribute('data-theme', 'dark');
+    localStorage.setItem('darkSwitch', 'dark');
+  } else {
+    document.body.removeAttribute('data-theme');
+    localStorage.removeItem('darkSwitch');
+  }
+} 
+  </script>
     <script type="text/javascript">
     var URL = "{% url 'filter_news' %}";
     function save_news(){
@@ -107,6 +150,8 @@
       });
     });
     </script>
+    
+
     <main role="main" class="container">
 
       <div class="row-12 text-center">

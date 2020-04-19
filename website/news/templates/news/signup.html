@@ -18,9 +18,49 @@
         font-size: medium;
         color: red;
     }
+    [data-theme="dark"] {
+  background-color: #111 !important;
+  color: #eee;
+}
   </style>
   </head>
   <body>
+  <div class="nav-link">
+
+          <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="darkSwitch">
+            <label class="custom-control-label" for="darkSwitch">Dark Mode</label>
+          </div>
+          <script>
+            const darkSwitch = document.getElementById('darkSwitch');
+window.addEventListener('load', () => {
+  if (darkSwitch) {
+    initTheme();
+    darkSwitch.addEventListener('change', () => {
+      resetTheme();
+    });
+  }
+});
+
+function initTheme() {
+  const darkThemeSelected =
+    localStorage.getItem('darkSwitch') !== null &&
+    localStorage.getItem('darkSwitch') === 'dark';
+  darkSwitch.checked = darkThemeSelected;
+  darkThemeSelected ? document.body.setAttribute('data-theme', 'dark') :
+    document.body.removeAttribute('data-theme');
+}
+
+function resetTheme() {
+  if (darkSwitch.checked) {
+    document.body.setAttribute('data-theme', 'dark');
+    localStorage.setItem('darkSwitch', 'dark');
+  } else {
+    document.body.removeAttribute('data-theme');
+    localStorage.removeItem('darkSwitch');
+  }
+} 
+  </script>
 	<br>
     <div class="row-12 text-center">
       <a class="news-header-logo text-dark" href="{%url 'home_page' %}"><img src="{% static 'news/images/lightlogo.png' %}" style= "height:0.45%; width:2.3%;"></a>

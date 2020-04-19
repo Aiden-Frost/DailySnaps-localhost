@@ -34,10 +34,15 @@
           font-size: 3.5rem;
         }
       }
+      [data-theme="dark"] {
+      background-color: #111 !important;
+      color: #eee;
+      }
     </style>
     <!-- Custom styles for this template -->
     <link href='https://fonts.googleapis.com/css?family=Rouge Script' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <link rel="stylesheet" href="dark-mode.css">
   </head>
 
   <body>
@@ -47,6 +52,7 @@
         <div class="col-4 pt-1">
           <a class="btn btn-sm btn-outline-secondary mr-3" href="{% url 'filter_news' %}">Filter News</a>
         </div>
+        
         <div id="backtotop" class="col-4 text-center">
           <a class="news-header-logo text-dark" href="{%url 'home_page' %}"><img src="{% static 'news/images/lightlogo.png' %}" style= "height:5%; width:10%;"></a>
           <br><h4 style="font-family: Rouge Script;font-size: 50px "><b>DailySnaps</b></h4>
@@ -62,6 +68,45 @@
           {% endif %}
         </div>
       </div>
+      <div class="nav-link">
+
+          <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="darkSwitch">
+            <label class="custom-control-label" for="darkSwitch">Dark Mode</label>
+          </div>
+<script>
+            const darkSwitch = document.getElementById('darkSwitch');
+window.addEventListener('load', () => {
+  if (darkSwitch) {
+    initTheme();
+    darkSwitch.addEventListener('change', () => {
+      resetTheme();
+    });
+  }
+});
+
+function initTheme() {
+  const darkThemeSelected =
+    localStorage.getItem('darkSwitch') !== null &&
+    localStorage.getItem('darkSwitch') === 'dark';
+  darkSwitch.checked = darkThemeSelected;
+  darkThemeSelected ? document.body.setAttribute('data-theme', 'dark') :
+    document.body.removeAttribute('data-theme');
+}
+
+function resetTheme() {
+  if (darkSwitch.checked) {
+    document.body.setAttribute('data-theme', 'dark');
+    localStorage.setItem('darkSwitch', 'dark');
+  } else {
+    document.body.removeAttribute('data-theme');
+    localStorage.removeItem('darkSwitch');
+  }
+} 
+  </script>
+          
+
+        </div>
     </header>
     <div class="container" style="text-align: center;">
       <div style="display: inline-block;">
@@ -100,8 +145,8 @@
                       <p class="lead mb-0"><a href="{{ url|index_value:pos }}" class="text-white font-weight-bold">Continue reading...</a></p>
                     </div>
                 </div>
-                {%endif%}
-              {%endif%}
+                {% endif %}
+              {% endif %}
             {% endfor %}
               
           </div>
