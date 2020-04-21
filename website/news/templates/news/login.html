@@ -150,6 +150,7 @@ button{
 </style>
 
 <br>
+<body>
 <div class="body"></div>
 
 <div class="container">
@@ -161,9 +162,9 @@ button{
           <a class="news-header-logo text-dark" href="{%url 'home_page' %}"><img src="{% static 'news/images/lightlogo.png' %}" style= "height:5%; width:10%;"></a>
           <br><h4 style="font-family: Rouge Script;font-size: 50px "><b>DailySnaps</b></h4>
         </div>
-
+	
 		<br>
-		<div class="login">
+		<div class="row login">
             <form method="post">
                 {% csrf_token %}
                 <input type="text" name="username" placeholder="Enter Username"><br>
@@ -173,3 +174,7 @@ button{
 				font-family: "Exo", sans-serif;font-size: 16px;font-weight: 400;padding: 6px;margin-top: 10px;'>
             </form>
 		</div>
+		
+</div>
+</body>
+</html>
