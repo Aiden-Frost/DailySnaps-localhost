@@ -145,6 +145,7 @@ function resetTheme() {
   }
 } 
   </script>
+</div>
     <script type="text/javascript">
     var URL = "{% url 'filter_news' %}";
     function save_news(){
@@ -219,14 +220,13 @@ function resetTheme() {
                 <div class="container">
                     <p>Date : {{ published|index_value:pos }}</p>
                 </div>
-        </a>
-        <div class="container">
+              </a>
+        <div>
           <form method="POST" autocomplete="off" action=".">
             <input  type="button" value="Save{% if url|index_value:pos in saved %}d {% endif %}" id= '{{ source|index_value:pos }}@#${{ author|index_value:pos }}@#${{description|index_value:pos }}@#${{ title|index_value:pos }}@#${{ content|index_value:pos }}@#${{ published|index_value:pos }}@#${{ image|index_value:pos }}@#${{ url|index_value:pos }}' class="button" name="save"/>
           </form>
-
         </div>
-            </div>
+      </div>
         {% endfor %}
       
       ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
