@@ -211,7 +211,7 @@ function resetTheme() {
         {%for pos in totalResults%}
           {% if carousel|index_value:pos|content %}
             <div class="news-post">
-              <h3 class="news-post-title">{{title|index_value:pos}}</h3>
+              <a href={{ url|index_value:pos }}><h3 class="news-post-title">{{title|index_value:pos}}</h3></a>
               <p class="news-post-meta">{{published|index_value:pos}}</p>
 
               <h6>{{description|index_value:pos}}</h6>
