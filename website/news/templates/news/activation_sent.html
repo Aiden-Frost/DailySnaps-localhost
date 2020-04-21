@@ -28,9 +28,56 @@
             justify-content: center;
             flex-direction: row;
         }
+        [data-theme="dark"] {
+      background-color: #111 !important;
+      color: #eee;
+      }
+      [data-theme="dark"] .bg-light{
+      background-color: #94948b !important;
+      color: #eee;
+      }
         </style>
   </head>
     <body>
+    <div class="nav-link">
+
+          <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="darkSwitch">
+            <label class="custom-control-label" for="darkSwitch">Dark Mode</label>
+          </div>
+<script>
+            const darkSwitch = document.getElementById('darkSwitch');
+window.addEventListener('load', () => {
+  if (darkSwitch) {
+    initTheme();
+    darkSwitch.addEventListener('change', () => {
+      resetTheme();
+    });
+  }
+});
+
+function initTheme() {
+  const darkThemeSelected =
+    localStorage.getItem('darkSwitch') !== null &&
+    localStorage.getItem('darkSwitch') === 'dark';
+  darkSwitch.checked = darkThemeSelected;
+  darkThemeSelected ? document.body.setAttribute('data-theme', 'dark') :
+    document.body.removeAttribute('data-theme');
+}
+
+function resetTheme() {
+  if (darkSwitch.checked) {
+    document.body.setAttribute('data-theme', 'dark');
+    localStorage.setItem('darkSwitch', 'dark');
+  } else {
+    document.body.removeAttribute('data-theme');
+    localStorage.removeItem('darkSwitch');
+  }
+} 
+  </script>
+          
+
+        </div>
         <div class="row-12 text-center">
           <a class="news-header-logo text-dark" href="{%url 'home_page' %}"><img src="{% static 'news/images/lightlogo.png' %}" style= "height:1%; width:5%;"></a>
           <br>
@@ -42,7 +89,7 @@
         <div class="grid_wrapper">
         <img src="{% static 'news/images/tick.png' %}" alt="Avatar" style="width:20%; height: 90%;">
         </div>
-        <div class="container">
+        <div class="container bg-light">
             <h3 class="pb-10 mb-15 font-italic">Activation link sent! Please check your console or e-mail.</h3>
         </div>
       </div>
