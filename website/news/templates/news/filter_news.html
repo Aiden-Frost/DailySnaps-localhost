@@ -82,8 +82,19 @@
 
 [data-theme="dark"] {
   background-color: #111 !important;
-  color: #eee;
+
 }
+[data-theme="dark"] .bg-light{
+      background-color: #111 !important;
+      color: #eee;
+      }
+[data-theme="dark"] .texter{
+      background-color: #111 !important;
+      color: #eee;
+      }
+
+
+
     </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -102,7 +113,7 @@
 
           <div class="custom-control custom-switch">
             <input type="checkbox" class="custom-control-input" id="darkSwitch">
-            <label class="custom-control-label" for="darkSwitch">Dark Mode</label>
+            <label class="custom-control-label bg-light" for="darkSwitch">Dark Mode</label>
           </div>
           <script>
             const darkSwitch = document.getElementById('darkSwitch');
@@ -155,9 +166,9 @@ function resetTheme() {
     <main role="main" class="container">
 
       <div class="row-12 text-center">
-          <a class="news-header-logo text-dark" href="{%url 'home_page' %}"><img src="{% static 'news/images/lightlogo.png' %}" style= "height:2%; width:5%;"></a>
+          <a class="news-header-logo text-dark" href="{%url 'home_page' %}"><img src="{% static 'news/images/lightlogo.png' %}" class='bois' style= "height:2%; width:5%;"></a>
           <br>
-          <h4 style="font-family: Rouge Script;font-size: 50px; "><b>Filter News</b></h4>
+          <h4 class='texter'style="font-family: Rouge Script;font-size: 50px; "><b>Filter News</b></h4>
       </div>
       <form method="GET" autocomplete="off" action=".">
         <div class="form-row">
