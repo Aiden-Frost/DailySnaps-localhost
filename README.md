@@ -121,3 +121,12 @@ Once you fill in the details and click Signup button, look inside your terminal/
 4. Make Ratings for articles
 5. Password Change Option
 6. Confirmation through Email
+
+### Major Contributors:
+* Aditya Verma: https://github.com/adiver26
+* Rahul Raman: https://github.com/Aiden-Python
+* Ritik Hariani: https://github.com/RITIKHARIANI
+* Romaanchan Skanda: https://github.com/Prix4Houdini
+
+Special Thanks:
+* Sourav Tecken: https://github.com/souravtecken
