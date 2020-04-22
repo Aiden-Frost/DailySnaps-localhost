@@ -28,6 +28,9 @@ class Saved_Articles(models.Model):
     totalResults = models.CharField(max_length=5000, blank=True)
     preference = models.CharField(max_length=5000,blank=True)
 
+    def __str__(self):
+        return (self.user.username + "'s Articles")
+
 @receiver(post_save, sender=User)
 def update_profile_signal(sender, instance, created, **kwargs):
     if created:

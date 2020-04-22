@@ -11,6 +11,7 @@ This is a **Django-based website** that displays top news and using **GoogleNews
 5. Filter by keyword
 6. Save user's loved articles.
 7. Tokenized Signup with confirmation in console(on local machine) or email.
+8. Dark Mode view
 
 ## Getting Started
 Follow these instructions to get a copy running on your local machine for
@@ -111,3 +112,12 @@ in your browser to view a local copy of DailySnaps
 ### Signup Usage
 
 Once you fill in the details and click Signup button, look inside your terminal/console. There will be a uniquely generated link. Copy paste that onto your broswer's address bar and press enter. You will automatically be redirected to the website with you logged in.
+
+### Future Work
+
+1. Integrate it with Machine Learning Recommendation Systems based on user's saved articles.
+2. Make it mobile compatible
+3. Include a Share button to Share news among various social network platforms
+4. Make Ratings for articles
+5. Password Change Option
+6. Confirmation through Email
